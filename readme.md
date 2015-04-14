@@ -23,4 +23,4 @@ echo $view->make('hello');
 
 ### Documentation
 
-http://laravel.com/docs/templates#blade-templating
+http://laravel.com/docs/5.0/templates

@@ -167,11 +167,21 @@ class Blade {
         return $env;
     }
 
+    /**
+     * @brief getView
+     *
+     * @return
+     */
     public function getView()
     {
         return $this->instance;
     }
 
+    /**
+     * @brief getCompiler
+     *
+     * @return
+     */
     public function getCompiler()
     {
         return $this->container['blade.compiler'];
