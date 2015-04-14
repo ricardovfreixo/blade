@@ -1,20 +1,36 @@
 {
-    "name": "philo/laravel-blade",
-    "description": "Use the simple and yet powerful Laravel Blade templating engine as a standalone component.",
+    "name": "txthinking/blade",
+    "description": "Use the simple and yet powerful Laravel 5 Blade templating engine as a standalone component.",
     "keywords": ["laravel", "blade"],
     "license": "MIT",
     "authors": [
         {
             "name": "Philo Hermans",
             "email": "me@philohermans.com"
+        },
+        {
+            "name": "Cloud",
+            "email": "cloud@txthinking.com",
+            "homepage": "http://www.txthinking.com",
+            "role": "Thinker"
         }
     ],
     "require": {
-        "illuminate/view": "4.2.*"
+        "illuminate/view": "~5.0",
+        "jeremeamia/superclosure": "~2.1",
+        "illuminate/events": "~5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.6"
     },
     "autoload": {
         "psr-4": {
-            "Philo\\Blade\\": "src"
+            "Tx\\": "src"
         }
+    },
+    "autoload-dev": {
+        "classmap": [
+            "tests/TestCase.php"
+        ]
     }
 }
