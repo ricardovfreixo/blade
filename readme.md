@@ -10,15 +10,14 @@ $ composer require txthinking/blade
 
 ```
 <?php
-use Tx\Blade;
+use \Tx\ViewProvider;
 
-$views = __DIR__ . '/views';
-$cache = __DIR__ . '/cache';
+$v = (new ViewProvider([
+    'viewPaths' => [__DIR__ . '/views'],
+    'cachePath' => __DIR__ . '/cache',
+]))->getInstance();
 
-$blade = new Blade($views, $cache);
-$view = $blade->getView();
-
-echo $view->make('hello');
+echo $v->make('hello');
 ```
 
 ### Documentation

@@ -12,7 +12,7 @@ use Illuminate\View\Compilers\BladeCompiler;
 use Illuminate\View\FileViewFinder;
 use Illuminate\View\Factory;
 
-class Blade {
+class ViewProvider extends ServiceProvider{
 
     /**
      * Array containg paths where to look for blade files
@@ -32,27 +32,23 @@ class Blade {
     protected $container;
 
     /**
-     * @var Illuminate\View\Factory
-     */
-    protected $instance;
-
-    /**
      * Initialize class
      * @param array  $viewPaths
      * @param string $cachePath
      */
-    function __construct($viewPaths = array(), $cachePath) {
-
-        $this->viewPaths = (array) $viewPaths;
-        $this->cachePath = $cachePath;
+    public function __construct($conf) {
+        $this->viewPaths = $conf['viewPaths'];
+        $this->cachePath = $conf['cachePath'];
 
         $this->container = new Container;
         $this->registerFilesystem();
         $this->registerEvents();
 
+        $this->register();
+    }
+    public function register() {
         $this->registerEngineResolver();
         $this->registerViewFinder();
-        $this->instance = $this->registerFactory();
     }
 
     public function registerFilesystem()
@@ -168,22 +164,12 @@ class Blade {
     }
 
     /**
-     * @brief getView
+     * @brief getInstance
      *
      * @return
      */
-    public function getView()
-    {
-        return $this->instance;
+    public function getInstance(){
+        return $this->registerFactory();
     }
 
-    /**
-     * @brief getCompiler
-     *
-     * @return
-     */
-    public function getCompiler()
-    {
-        return $this->container['blade.compiler'];
-    }
 }
